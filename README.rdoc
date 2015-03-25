@@ -1,0 +1,3 @@
+= Power Subtasks
+
+Customizations to Redmine's subtasks to make them more powerful.
