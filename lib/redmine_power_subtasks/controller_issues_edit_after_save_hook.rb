@@ -18,8 +18,9 @@ module RedminePowerSubtasks
         if priority.present?
           # Do each one that way all the callbacks fire and update the parents
           issue.leaves.each do |child_issue|
-            # TODO: need journal tracking
-            child_issue.update_attributes(:priority => priority)
+            child_issue.init_journal(User.current)
+            child_issue.priority = priority
+            child_issue.save
           end
         end
 

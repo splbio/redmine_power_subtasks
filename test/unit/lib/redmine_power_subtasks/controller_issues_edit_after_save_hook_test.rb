@@ -69,5 +69,19 @@ class RedminePowerSubtasks::ControllerIssuesEditAfterSaveHookTest < ActionContro
       assert_equal @low, @child2.reload.priority
       assert_equal @low, @grandchild.reload.priority
     end
-  end
+
+    should "create journals for each leaf issue that was changed" do
+      # @grandchild: @high to @normal
+      # @child2: @high to @normal
+      # Others are parent issues which doesn't track changes (calculated field)
+      assert_difference("Journal.count", 2) do
+        hook(:issue => @parent, :params => {:bulk_priority => @normal.id})
+      end
+
+      assert_equal @normal, @parent.reload.priority
+      assert_equal @normal, @child1.reload.priority
+      assert_equal @normal, @child2.reload.priority
+      assert_equal @normal, @grandchild.reload.priority
+    end
+end
 end
