@@ -1,0 +1,21 @@
+<% unless issue.leaf? %>
+<%= javascript_tag do %>
+  $(document).ready(function() {
+    $('#issue_priority_id').
+      prop('name', 'bulk_priority').
+      prop('disabled', false).
+      focus(function() {
+        $(this).prop('previousValue', $(this).val());
+      }).change(function() {
+        $(this).blur();
+        var success = confirm("Changing this will change all child issues. Are you sure?");
+        if (!success) {
+          // Revert
+          $(this).val($(this).prop("previousValue"));
+          return false;
+        }
+      });
+  });
+<% end %>
+<% end %>
+
