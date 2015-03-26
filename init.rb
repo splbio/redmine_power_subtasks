@@ -5,3 +5,6 @@ Redmine::Plugin.register :redmine_power_subtasks do
   version '1.0.0'
   author_url 'http://www.littlestreamsoftware.com'
 end
+
+require 'redmine_power_subtasks/controller_issues_edit_after_save_hook'
+
