@@ -46,7 +46,13 @@ class RedminePowerSubtasks::ViewIssuesFormDetailsBottomHookTest < ActionControll
     end
   end
 
-  context "#view_issues_form_details_bottom for an issue with no children" do
-    should "render the JavaScript to replace the priority field"
+  context "#view_issues_form_details_bottom for an issue with children" do
+    should "render the JavaScript to replace the priority field" do
+      response = hook(:issue => @parent)
+
+      assert_match /script/i, response
+      assert_match /issue_priority_id/, response
+      assert_match /bulk_priority/, response
+    end
   end
 end
