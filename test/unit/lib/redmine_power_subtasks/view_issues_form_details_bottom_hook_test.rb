@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../../test_helper'
 
-class RedminePowerSubtasks::ViewIssuesShowDetailsBottomHookTest < ActionController::TestCase
+class RedminePowerSubtasks::ViewIssuesFormDetailsBottomHookTest < ActionController::TestCase
   fixtures :projects, :users, :email_addresses,
            :trackers, :projects_trackers,
            :enabled_modules,
@@ -29,7 +29,7 @@ class RedminePowerSubtasks::ViewIssuesShowDetailsBottomHookTest < ActionControll
   end
   
   def hook(args={})
-    call_hook :view_issues_show_details_bottom, args
+    call_hook :view_issues_form_details_bottom, args
   end
 
   def setup
@@ -38,7 +38,7 @@ class RedminePowerSubtasks::ViewIssuesShowDetailsBottomHookTest < ActionControll
     @child_without_children = @parent.children.second
   end
 
-  context "#view_issues_show_details_bottom_hook for an issue with no children" do
+  context "#view_issues_form_details_bottom for an issue with no children" do
     should "render nothing" do
       response = hook(:issue => @child_without_children)
 
@@ -46,7 +46,7 @@ class RedminePowerSubtasks::ViewIssuesShowDetailsBottomHookTest < ActionControll
     end
   end
 
-  context "#view_issues_show_details_bottom_hook for an issue with no children" do
+  context "#view_issues_form_details_bottom for an issue with no children" do
     should "render the JavaScript to replace the priority field"
   end
 end

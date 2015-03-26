@@ -7,4 +7,4 @@ Redmine::Plugin.register :redmine_power_subtasks do
 end
 
 require 'redmine_power_subtasks/controller_issues_edit_after_save_hook'
-require 'redmine_power_subtasks/view_issues_show_details_bottom_hook'
+require 'redmine_power_subtasks/view_issues_form_details_bottom_hook'
